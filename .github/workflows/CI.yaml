@@ -1,0 +1,41 @@
+name: Code quality
+
+on: [pull_request]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11 
+        
+      - name: Install dependencies
+        run: pip install pipenv && pipenv install --dev
+
+      - name: Run tests
+        run: pipenv run python manage.py test
+
+      - name: Code formatting (black)
+        run: pipenv run black .
+
+      - name: Code linting (isort)
+        run: pipenv run isort .
+
+      - name: Type checking (mypy)
+        run: pipenv run mypy .
+
+      - name: Code quality checks (ruff)
+        run: pipenv run ruff .
+
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: .coverage
