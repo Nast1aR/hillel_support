@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.db import models
 
-from .models import User
+from ...src.issues.models import User
 
 
 def all(request):
