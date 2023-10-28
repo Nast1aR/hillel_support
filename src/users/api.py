@@ -5,6 +5,7 @@ from django.db import models
 from ...src.issues.models import User
 from django.contrib.auth.hashers import make_password
 
+
 def all(request):
     users = User.objects.all()
     attrs = {"id", "email", "first_name", "last_name", "password", "role"}
@@ -34,7 +35,8 @@ def create(request):
 
     return JsonResponse(payload)
 
-def validate(self, attrs: dict) -> dict:
-        attrs["password"] = make_password(attrs["password"])
 
-        return attrs
+def validate(self, attrs: dict) -> dict:
+    attrs["password"] = make_password(attrs["password"])
+
+    return attrs
