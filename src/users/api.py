@@ -2,7 +2,6 @@ import json
 from django.http import JsonResponse
 from django.db import models
 
-from ...src.issues.models import User
 from django.contrib.auth.hashers import make_password
 
 

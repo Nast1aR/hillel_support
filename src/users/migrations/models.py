@@ -10,4 +10,4 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    role_id = models.IntegerField()
+    role = models.ForeignKey(Role, on_delete=models.SET_DEFAULT, default=1)
