@@ -3,9 +3,9 @@ from enum import StrEnum, auto
 
 
 class Status(StrEnum):
-    OPENED = auto()  # "OPENED"
-    ASSIGNED = auto()  # "ASSIGNED"
-    CLOSED = auto()  # "CLOSED"
+    OPENED = auto()  
+    ASSIGNED = auto()  
+    CLOSED = auto()  
 
     @classmethod
     @lru_cache(maxsize=1)

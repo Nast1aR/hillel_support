@@ -17,8 +17,6 @@ def all(request):
     return JsonResponse({"result": results})
 
 
-# from django.views.decorators.csrf import csrf_exempt
-# @csrf_exempt
 def create(request):
     if request.method != "POST":
         raise NotImplementedError("Only POST requests")
