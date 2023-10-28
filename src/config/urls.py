@@ -18,4 +18,6 @@ urlpatterns = [
     path('users/create/', UserCreateView.as_view(), name='user-create'),
     path('issues/create/', IssueCreateView.as_view(), name='issue-create'),
     path('issues/all/', IssueListView.as_view(), name='issue-list'),
+    path("auth/", include("authentication.urls")),
+    path("issues/", include("issues.urls"))
 ]

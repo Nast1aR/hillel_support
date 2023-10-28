@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.db import models
 
 from ...src.issues.models import User
-
+from django.contrib.auth.hashers import make_password
 
 def all(request):
     users = User.objects.all()
@@ -33,3 +33,8 @@ def create(request):
     payload = {attr: getattr(user, attr) for attr in attrs}
 
     return JsonResponse(payload)
+
+def validate(self, attrs: dict) -> dict:
+        attrs["password"] = make_password(attrs["password"])
+
+        return attrs
