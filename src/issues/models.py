@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class Issue(TimestampMixin):
     title = models.CharField(max_length=30)
     body = models.CharField(max_length=255)
@@ -20,12 +21,11 @@ class Issue(TimestampMixin):
         settings.AUTH_USER_MODEL,
         on_delete=models.DO_NOTHING,
         related_name="senior_issues",
-        null=True
+        null=True,
     )
 
     class Meta:
         db_table = "issues"
-
 
 
 class Message(TimestampMixin):

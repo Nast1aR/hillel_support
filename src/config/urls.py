@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from ...deprecated.exchange_rates import exchange_rates
+
+# from ...deprecated.exchange_rates import exchange_rates
 from django.http import JsonResponse
 from django.urls import path
 from users.views import UserListView, UserCreateView, IssueCreateView, IssueListView
