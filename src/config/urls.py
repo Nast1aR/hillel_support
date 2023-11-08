@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
+from . import views
 
-# from ...deprecated.exchange_rates import exchange_rates
+
 from django.http import JsonResponse
 from django.urls import path
 from users.views import UserListView, UserCreateView, IssueCreateView, IssueListView
@@ -23,4 +24,5 @@ urlpatterns = [
     path("issues/all/", IssueListView.as_view(), name="issue-list"),
     path("auth/", include("authentication.urls")),
     path("issues/", include("issues.urls")),
+    path("users/activate/", views.activate_user, name="activate_user"),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 class Role(models.Model):
@@ -11,3 +12,8 @@ class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     role = models.CharField(max_length=15)
+    is_active = models.BooleanField(default=False)
+
+    class ActivationKey(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        key = models.UUIDField(unique=True)
