@@ -1,8 +1,9 @@
 import json
-from django.http import JsonResponse
-from typing import Any
 from pprint import pprint as print
+from typing import Any
+
 import requests
+from django.http import JsonResponse
 from pydantic import BaseModel, Field
 
 API_KEY = "HDKIKI6WAC2J677G"

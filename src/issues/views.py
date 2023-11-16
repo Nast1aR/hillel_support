@@ -1,9 +1,9 @@
+import json
+
 from django.http import JsonResponse
 from django.views import View
-from django.shortcuts import get_object_or_404
-from .models import User, Activation_key
-import json
-from .models import Issue
+
+from .models import Activation_key, Issue, User
 
 
 class GetAllUsers(View):
@@ -64,22 +64,3 @@ class GetAllIssues(View):
     def get(self, request):
         issues = Issue.objects.all().values()
         return JsonResponse(list(issues), safe=False)
-
-
-
-def activate_user(request):
-    if request.method == 'POST':
-        activation_key = request.POST.get('key')
-        try:
-            activation_key = uuid.UUID(activation_key)
-            activation_key_obj = get_object_or_404(ActivationKey, key=activation_key)
-            user = activation_key_obj.user
-            user.is_active = True
-            user.save()
-            activation_key_obj.delete()
-            # Send activation success email
-            # You can use a library like Django's EmailMessage to send the email.
-            return JsonResponse({'message': 'Your email is successfully activated'})
-        except (ValueError, ActivationKey.DoesNotExist):
-            return JsonResponse({'error': 'Invalid activation key'}, status=400)
-    return JsonResponse({'error': 'Invalid request method'}, status=400)

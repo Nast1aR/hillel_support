@@ -1,9 +1,11 @@
 import json
-from django.http import JsonResponse
-from rest_framework import serializers, permissions, status
-from rest_framework import CreateAPIView, GenericAPIView
-from rest_framework.response import Response
+
 from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+from rest_framework import permissions, serializers, status
+from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.response import Response
+
 from .models import User
 from .services import send_user_activation_email
 

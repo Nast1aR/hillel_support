@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from rest_framework import serializers
 
-from .constants import Status
+from ..users.constants import Status
 from .models import Issue, Message
 
 

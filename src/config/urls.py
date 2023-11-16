@@ -1,11 +1,6 @@
 from django.contrib import admin
-from django.urls import path
-from . import views
-
-
 from django.http import JsonResponse
-from django.urls import path
-from users.views import UserListView, UserCreateView, IssueCreateView, IssueListView
+from django.urls import include, path
 
 
 def signup(request):
@@ -18,11 +13,8 @@ def signup(request):
 
 
 urlpatterns = [
-    path("users/all/", UserListView.as_view(), name="user-list"),
-    path("users/create/", UserCreateView.as_view(), name="user-create"),
-    path("issues/create/", IssueCreateView.as_view(), name="issue-create"),
-    path("issues/all/", IssueListView.as_view(), name="issue-list"),
+    path("admin/", admin.site.urls),
+    path("users/", include("users.urls")),
     path("auth/", include("authentication.urls")),
     path("issues/", include("issues.urls")),
-    path("users/activate/", views.activate_user, name="activate_user"),
 ]

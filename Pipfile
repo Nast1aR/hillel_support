@@ -7,6 +7,9 @@ name = "pypi"
 requests = "~=2.31"
 pydantic = "~=2.4"
 django = "*"
+djangorestframework = "~=3.14"
+djangorestframework-simplejwt = { version = "~=5.3", extras = "crypto" }
+celery = { version = "==5.3.4", extras = ["redis"]}
 
 [dev-packages]
 black = "~=23.7"

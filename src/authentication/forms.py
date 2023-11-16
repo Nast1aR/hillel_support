@@ -1,6 +1,7 @@
 from django import forms
-from users.models import User, Role
 from django.core.exceptions import ValidationError
+
+from users.models import Role, User
 
 
 class RegistrationForm(forms.ModelForm):
