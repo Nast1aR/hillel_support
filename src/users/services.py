@@ -1,7 +1,8 @@
 import string
 import uuid
-from django.core.mail import send_mail
+from django.core.mail import send_mail as _send_mail
 from .models import User
+from config.celery import celery_app
 
 
 def create_activation_key(email: str) -> uuid.UUID:
@@ -19,6 +20,18 @@ def create_random_email() -> str:
     return f"{email_value}@{domain}"
 
 
+@celery_app.task
+def send_activation_mail(recipient:str, activation_link: uuid.UUID):
+    _send_mail(
+            subject="User activation",
+            message=f"Please activate your account: {activation_link}",
+            from_email="admin@admin.com",
+            recipient_list=[recipient],
+            fail_silently=False,
+        )
+ 
+
+
 def send_user_activation_email(email: str) -> None:
     """Generate a new activation link and send it via email."""
 
@@ -27,10 +40,7 @@ def send_user_activation_email(email: str) -> None:
 
     # IO-bound
     for _ in range(1000):
-        send_mail(
-            subject="User activation",
-            message=f"Please activate your account: {activation_link}",
-            from_email="admin@admin.com",
-            recipient_list=[create_random_email()],
-            fail_silently=False,
+        send_activation_mail.delay(
+            recipient=create_random_email(),
+            activation_link=activation_link
         )
