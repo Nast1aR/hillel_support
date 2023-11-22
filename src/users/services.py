@@ -5,8 +5,6 @@ from django.core.mail import send_mail as _send_mail
 
 from config.celery import celery_app
 
-from .models import User
-
 
 def create_activation_key(email: str) -> uuid.UUID:
     return uuid.uuid3(namespace=uuid.uuid4(), name=email)

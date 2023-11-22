@@ -1,6 +1,3 @@
-import uuid
-from collections import UserDict
-
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 

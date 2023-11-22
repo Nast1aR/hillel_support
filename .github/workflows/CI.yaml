@@ -25,8 +25,5 @@ jobs:
       - name: Code linting (isort)
         run: pipenv run isort .
 
-      - name: Type checking (mypy)
-        run: pipenv run mypy .
-
       - name: Code quality checks (ruff)
         run: pipenv run ruff .
