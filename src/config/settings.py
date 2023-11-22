@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+from distutils.util import strtobool
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 SRC_DIR = Path(__file__).resolve().parent.parent
@@ -10,10 +11,15 @@ ROOT_DIR = SRC_DIR.parent
 # TODO: Move?
 SECRET_KEY = "django-insecure-8py68-0=k5%sp4_yk2^=de*^ga&q3mo#$%4h(gk+$_-0f!^!$o"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", default="insecure")
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = strtobool(os.getenv("DJANGO_DEBUG", default=False))
+
+
+ALLOWED_HOSTS = [
+    element for element in os.getenv("DJANGO_ALLOWED_HOSTS").split(",") if element
+]
 
 # Application definition
 
