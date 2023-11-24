@@ -4,8 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from .constants import Status
 from .models import Issue
-from .permissions import (IssueParticipant, RoleIsAdmin, RoleIsJunior,
-                          RoleIsSenior)
+from .permissions import IssueParticipant, RoleIsAdmin, RoleIsJunior, RoleIsSenior
 
 
 class IssueReadonlySerializer(serializers.ModelSerializer):
